@@ -8,44 +8,63 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Guild',
+            name="Guild",
             fields=[
-                ('id', models.UUIDField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=30, unique=True)),
-                ('discord_id', models.CharField(max_length=30, unique=True)),
+                ("id", models.UUIDField(primary_key=True, serialize=False)),
+                ("name", models.CharField(max_length=30, unique=True)),
+                ("discord_id", models.CharField(max_length=30, unique=True)),
             ],
         ),
         migrations.CreateModel(
-            name='IqamaSource',
+            name="IqamaSource",
             fields=[
-                ('id', models.UUIDField(primary_key=True, serialize=False)),
-                ('name', models.CharField(max_length=30, unique=True)),
+                ("id", models.UUIDField(primary_key=True, serialize=False)),
+                ("name", models.CharField(max_length=30, unique=True)),
             ],
         ),
         migrations.CreateModel(
-            name='MasjidData',
+            name="MasjidData",
             fields=[
-                ('id', models.UUIDField(primary_key=True, serialize=False)),
-                ('slug', models.CharField(max_length=30, unique=True)),
-                ('name', models.CharField(blank=True, max_length=30, null=True)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('last_cached', models.DateTimeField(blank=True, default=None, null=True)),
-                ('iqama_source', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='discord_.iqamasource')),
+                ("id", models.UUIDField(primary_key=True, serialize=False)),
+                ("slug", models.CharField(max_length=30, unique=True)),
+                ("name", models.CharField(blank=True, max_length=30, null=True)),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                (
+                    "last_cached",
+                    models.DateTimeField(blank=True, default=None, null=True),
+                ),
+                (
+                    "iqama_source",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="discord_.iqamasource",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='GuildMasjidSettings',
+            name="GuildMasjidSettings",
             fields=[
-                ('id', models.UUIDField(primary_key=True, serialize=False)),
-                ('channel_id', models.CharField(max_length=30)),
-                ('notifications', models.BooleanField()),
-                ('guild', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='discord_.guild')),
-                ('masjid_data', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='discord_.masjiddata')),
+                ("id", models.UUIDField(primary_key=True, serialize=False)),
+                ("channel_id", models.CharField(max_length=30)),
+                ("notifications", models.BooleanField()),
+                (
+                    "guild",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="discord_.guild"
+                    ),
+                ),
+                (
+                    "masjid_data",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="discord_.masjiddata",
+                    ),
+                ),
             ],
         ),
     ]

@@ -1,5 +1,6 @@
-from .models import IqamaSource, MasjidData, Guild, GuildMasjidSettings
 from rest_framework import serializers
+
+from .models import Guild, GuildMasjidSettings, IqamaSource, MasjidData, IqamaTime
 
 
 class IqamaSourceSerializer(serializers.ModelSerializer):
@@ -23,4 +24,10 @@ class GuildSerializer(serializers.ModelSerializer):
 class GuildMasjidSettingsSerializer(serializers.ModelSerializer):
     class Meta:
         model = GuildMasjidSettings
+        fields = "__all__"
+
+
+class IqamaTimeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = IqamaTime
         fields = "__all__"
